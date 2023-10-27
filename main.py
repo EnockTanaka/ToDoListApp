@@ -6,7 +6,6 @@ View tasks
 Mark task as done
 Remove task
 Quit
-
 """
 class ToDoList:
     def __init__(self) -> None:
