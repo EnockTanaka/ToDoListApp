@@ -8,8 +8,12 @@ Remove task
 Quit
 """
 class ToDoList:
-    def __init__(self) -> None:
-        self.tasks = []
+    def __init__(self, file) -> None:
+
+        self.file_path = file
+        self.file = open(self.file_path, 'w+')
+        self.tasks = self.file.readlines()
+        self.file.close()
 
     def main_menu(self):
         """
@@ -33,7 +37,7 @@ class ToDoList:
 
         if option == '1':
             print( menu_options[option])
-            print(self.add_task())
+            self.add_task()
 
         elif option == '2':
             print( menu_options[option])
@@ -61,20 +65,26 @@ class ToDoList:
         """
         print("Enter your Tasks and if you have finished enter 'done'")
         while True:
-
             task = input("Enter a task: ").strip()
 
             try:
                 if task.lower() == "done":
                     print("Your Tasks have been added and to view them go to main menu option 2")
-                    print(self.tasks)
-                    return self.main_menu()
+                    self.update_tasks()
+                    self.main_menu()
+
                 self.tasks.append(task)
 
             except EOFError:
-                print("You have exited you Add task")
+                print("You have exited your Add task")
                 exit()
 
+    def update_tasks(self):
+        '''Save items in task to a file'''
+        with open(self.file_path, 'w') as file:
+            print(self.tasks)
+            for line in self.tasks:
+                file.write(f"{line}\n")
 
     def view_tasks(self):
         """
@@ -97,7 +107,7 @@ class ToDoList:
         Removes a task from the list.
         """
         print("Here are your tasks:")
-        print()
+        print(self.tasks)
         return
 
     def quit_app(self):
@@ -109,6 +119,5 @@ class ToDoList:
 
 
 if __name__ == "__main__":
-    todo  = ToDoList()
+    todo  = ToDoList('task.txt')
     todo.main_menu()
-
