@@ -43,6 +43,7 @@ class ToDoList:
 
     def login(self):
         print("Login:")
+        print()
         username = input("Enter your username: ")
 
         if username in self.users:
