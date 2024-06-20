@@ -26,7 +26,7 @@ all user information and tasks in text files.
 1. Clone the repository:
 
     ```
-    git clone https://github.com/yourusername/todo-list-terminal-app.git
+    git clone git@github.com:EnockTanaka/ToDoListApp.git
     ```
 
 2. Navigate to the project directory:
